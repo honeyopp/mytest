@@ -43,3 +43,45 @@
   9. 场景里面加入线。
 
 #webgl线的绘制方式。
+GL_POINTS
+GL_LINES点点相连
+GL_LINE_STRIP相邻的点全部连起来。
+var line=new THREE.Line(GeOmetry,material,THREE.LinePieces(两个点会组成一条线。需要两两的为倍数的点))
+var line=new THREE.Line(GeOmetry,material,THREE.LineStrip(相邻的点全部连起来))
+
+GL_LINE_LOOP
+GL_LINE_POLYGON
+GL_TRIANGLES
+GL_TRIANGLES_STRIP
+
+坐标系：
+AxishHelper 坐标系的一个类
+var axisHelper=new THREE.axisHelper(4) //4代表坐标系的长度
+scene.add(asixHelper)//世界坐标。
+objectTotal=new THREE.object3D();
+objectTotal.ADD(cube)
+scene.add(objectTotal);
+
+
+function animation(){
+  mesh.position.x-=1;
+  renderer.render(scene,camera);
+  request.AnimationFrame(animation);//让物体循环运动起来
+}
+
+stats.js监控程序用了多少内存和FPS占用了多少帧。
+stats.js使用方法。
+
+var stats=new Stats();
+stats.domElement.style.position="absolute";
+stats.domElement.style.left="0px";
+stats.domElement.style.top="0px";
+document.getElementById('canvas-frame').appendChild(stats.domElement);
+然后在animation里面 加入stats.begin();stats.end()。但是很多浏览器不支持内存的显示。
+
+tween.js渐变的框架。(过渡器）,作用，用于改变相机的位置。
+ function initTween(){
+    new TWEEN.TWeen(camera.position).to({x:400},3000).repeat(Infinity).start(); infinity：执行次数,默认无限次
+ }
+
+ 然后在animation里面加入TWEEN.update();
